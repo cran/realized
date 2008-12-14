@@ -6,7 +6,7 @@
     cat("Available in R and S+.\n")
     cat(" R:  http://cran.r-project.org\n")
     cat("S+:  http://csan.insightful.com\n")
-    cat("Copyright (C) 2007  Scott W. Payseur <spayseur@u.washington.edu>\n\n")
+    cat("Copyright (C) 2008  Scott William Payseur, PhD <scott.payseur@gmail.com>\n\n")
    
     cat("This program is free software with restricted commercial use.\n")
     cat("See LICENSE file for more details.\n")
@@ -172,10 +172,16 @@ rKernel.available <- function()
 
 rv.kernel <- function(x, q, align.period=1, adj=TRUE, type=0, cts=TRUE, makeReturns=FALSE, ...)
 {	
-    if(!is.null(args$period))
+
+   
+    if(class(args) != "function")
     {
-    	align.period=args$period
-    }
+    # version 2.8 bug fix
+    	if(!is.null(args$period))
+    	{
+    		align.period=args$period
+    	}
+     }
 	cdata <- .convertData(x, cts=cts, makeReturns=makeReturns)
 	x <- cdata$data
 	x <- .alignReturns(x, align.period)
