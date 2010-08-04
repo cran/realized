@@ -1,6 +1,6 @@
 .First.lib <- function(libname, pkgname)
 {
-	library.dynam("realized")
+	library.dynam("realized", pkgname, libname)
    
     cat("Realized Library:  Realized Variance, Covariance, Correlation Estimation and Tools.\n")
    # cat("Available in R and S+.\n")
