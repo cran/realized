@@ -17,7 +17,6 @@ rv.avg(x,period, align.period = 1, cts = TRUE, makeReturns = FALSE, ...)
   \item{makeReturns}{ Prices are passed make them into log returns}
     \item{...}{ ...}
 }
-}
 \value{
  Realized variance using average subsample.
 }

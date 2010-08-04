@@ -22,6 +22,7 @@
 \alias{ts2realized}
 \alias{tsGetDay}
 \alias{tsGetDayObject}
+\alias{timeDate}
 \description{Internal realized objects.}
 \details{These are not to be called by the user.}
 \keyword{internal}

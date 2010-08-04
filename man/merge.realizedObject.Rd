@@ -12,7 +12,7 @@ merge.realizedObject(x, y = NULL, ...)
 \arguments{
   \item{x}{ First object }
   \item{y}{ Second object }
-  \item{\dots}{ Third, .... objects }
+  \item{...}{ Third, .... objects }
 }
 \details{
   see users manual.

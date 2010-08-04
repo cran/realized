@@ -10,8 +10,5 @@
 http://faculty.washington.edu/ezivot/ezresearch.htm
 }
 
-\examples{
-data(ge.real.tts)
-plot(ge.real.tts[[1]]) 
-}
+
 \keyword{datasets}

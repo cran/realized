@@ -8,7 +8,7 @@
 
 void justKernel(double *x, int *type, double *ans)
 {
-    ans[0] = K(x[0], type[0]); 
+    ans[0] = K(x[0], type[0]);
 
 }
 double K(double x, int type)
@@ -20,15 +20,15 @@ double K(double x, int type)
       case 0:  // Rectangular
          return(1);
          break;
-         
+
 	  case 1: // Bartlett
 	    return(1-thex);
 	    break;
-	   
-	  case 2: //2nd Order 
+
+	  case 2: //2nd Order
 	    return(1-2*thex+thex*thex);
 	    break;
-	    
+
 	  case 3: //Epanechnikov
 	    return(1-thex*thex);
 	    break;
@@ -67,12 +67,12 @@ double K(double x, int type)
 	  case 10: //Tukey-Hanning
 	    return((1 + sin(M_PI_2 - M_PI * thex))/2);
 	    break;
-	    
+
 	  case 11: //Modified Tukey-Hanning
 	    return((1 - sin(M_PI_2 - M_PI *(1 - thex) *(1 - thex)) )/2);
 	    break;
 	}
-	return(-999);	
+	return(-999);
 }
 
 
@@ -85,21 +85,21 @@ void kernel(double *a, int *na, int *q, int *adj, int *nw, double *ab, double *a
                 lags = 2*lags;
 
         for(j = 0; j <= lags; j++)
-		{        
-	
+		{
+
         	for(i = 0; i <= nab-j; i++)
 			     ab[j] += a[i] * a[i+j];
 		}
         for(i = 0; i <= lags; i ++)
         {
-              
+
               nwadj = 1;
               if(i > *q && *nw == 1)
               {
-                  
-                  nwadj = ((double)*q - ((double)i - (double)*q))/((double)*q); 
+
+                  nwadj = ((double)*q - ((double)i - (double)*q))/((double)*q);
               }
-               
+
               if(*adj == 0)
 	     	 {
                   theadj = 1;
@@ -107,12 +107,12 @@ void kernel(double *a, int *na, int *q, int *adj, int *nw, double *ab, double *a
               else
               {
                   theadj =  ((double)(nab+1)/((double)(nab+1)-(double)i));
-	          }                                 
+	          }
               if(i == 0)
-	      	  {	
-              		ans[0] += theadj * ab[i];        
+	      	  {
+              		ans[0] += theadj * ab[i];
               }
-              else 
+              else
               {
 	                ans[0] += 2 * nwadj *  theadj * ab[i];
               }
@@ -126,8 +126,8 @@ void kernelEstimator(double *a, double *b, int *na, int *q, int *adj, int *type,
 
 
         for(j = 0; j <= lags; j++)
-		{        
-	
+		{
+
         	for(i = 0; i <= nab-j; i++)
 			     ab[j] += a[i] * b[i+j];
         	for(i = j; i <= nab; i++)
@@ -141,11 +141,11 @@ void kernelEstimator(double *a, double *b, int *na, int *q, int *adj, int *type,
                  w = 1;
              }
              else
-             { 
+             {
              	w = K( ((double)i-1.0)/(double)lags, type[0]);
-             }	
-              
-              
+             }
+
+
              if(*adj == 0)
 	     	 {
                   theadj = 1;
@@ -153,13 +153,13 @@ void kernelEstimator(double *a, double *b, int *na, int *q, int *adj, int *type,
              else
              {
                   theadj =  ((double)(nab+1)/((double)(nab+1)-(double)i));
-	         }                                 
-             
+	         }
+
               if(i == 0)
-	      	  {	
-              		ans[0] += w * theadj * ab[i];        
+	      	  {
+              		ans[0] += w * theadj * ab[i];
               }
-              else 
+              else
               {
 	                ans[0] += w* ( theadj * ab[i] + theadj * ab2[i]);
               }
@@ -175,8 +175,8 @@ void kernel2(double *a, double *b, int *na, int *q, int *adj, int *nw, double *a
                 lags = 2*lags;
 
         for(j = 0; j <= lags; j++)
-		{        
-	
+		{
+
         	for(i = 0; i <= nab-j; i++)
 			     ab[j] += a[i] * b[i+j];
         	for(i = j; i <= nab; i++)
@@ -185,14 +185,14 @@ void kernel2(double *a, double *b, int *na, int *q, int *adj, int *nw, double *a
 		}
         for(i = 0; i <= lags; i ++)
         {
-              
+
               nwadj = 1;
               if(i > *q && *nw == 1)
               {
-                  
-                  nwadj = ((double)*q - ((double)i - (double)*q))/((double)*q); 
+
+                  nwadj = ((double)*q - ((double)i - (double)*q))/((double)*q);
               }
-               
+
               if(*adj == 0)
 	     	 {
                   theadj = 1;
@@ -200,12 +200,12 @@ void kernel2(double *a, double *b, int *na, int *q, int *adj, int *nw, double *a
               else
               {
                   theadj =  ((double)(nab+1)/((double)(nab+1)-(double)i));
-	          }                                 
+	          }
               if(i == 0)
-	      	  {	
-              		ans[0] += theadj * ab[i];        
+	      	  {
+              		ans[0] += theadj * ab[i];
               }
-              else 
+              else
               {
 	                ans[0] += nwadj *  theadj * ab[i];
 	                ans[0] += nwadj *  theadj * ab2[i];
@@ -218,8 +218,8 @@ void kernel2(double *a, double *b, int *na, int *q, int *adj, int *nw, double *a
 void subsample(double *a, double *b, int *na, int *m, int *period, double *tmpa, double *tmpb, int *tmpna, double *ans)
 {
     int i,j,k;
-    double starta, startb; 
-    
+    double starta, startb;
+
     for(i = 0; i <= *period -1 ; i++)
     {
         starta = 0.0;
@@ -250,7 +250,7 @@ void subsample(double *a, double *b, int *na, int *m, int *period, double *tmpa,
 void rv(double *a, double *b, int *na, int *period, double *tmpa, double *tmpb, int *tmpna, double *ans)
 {
     int j,k;
-    
+
         for(j = 0; j <= *na-1; j++)
         {
         	tmpa[j/ *period] += a[j];
@@ -265,7 +265,7 @@ void rv(double *a, double *b, int *na, int *period, double *tmpa, double *tmpb, 
 void rvperiod(double *a, double *b, int *na, int *period, double *tmpa, double *tmpb, int *tmpna, double *ans)
 {
     int j,k;
-    
+
         for(j = 0; j <= *na-1; j++)
         {
         	tmpa[j/ *period] = a[j];
@@ -281,7 +281,7 @@ void rvperiod(double *a, double *b, int *na, int *period, double *tmpa, double *
 void rfourth(double *a, double *b, int *na, int *period, double *tmpa, double *tmpb, int *tmpna, double *ans)
 {
     int j,k;
-    
+
         for(j = 0; j <= *na-1; j++)
         {
         	tmpa[j/ *period] += a[j];
@@ -296,7 +296,7 @@ void rfourth(double *a, double *b, int *na, int *period, double *tmpa, double *t
 void rfourthlead(double *a, double *b, int *na, int *period, double *tmpa, double *tmpb, int *tmpna, double *ans)
 {
     int j,k;
-    
+
         for(j = 0; j <= *na-1; j++)
         {
         	tmpa[j/ *period] += a[j];
@@ -325,16 +325,16 @@ void covkernel(double *a, double *b, int *na, int *q, int *adj, double *ans)
         else
         {
              theadj =  ((double)(nab+1)/((double)(nab+1)-(double)(2*lags)));
-	    }                                 
+	    }
         ans[0] = ans[0] * theadj;
 
 }
-	
+
 void covcc(double *a, double *b, double *at, double *bt, int *na, int *nb, double *ans)
 {
         int i, prevj = 0, j, nbi=*nb, nai = *na;
         double tmpRet=0;
-        
+
         for(i = 0; i < nai; i++)
         {
             tmpRet=0;
@@ -353,14 +353,14 @@ void covcc(double *a, double *b, double *at, double *bt, int *na, int *nb, doubl
                 }
             }
             ans[i] = a[i]* tmpRet;
-        } 
+        }
 }
-	
+
 void pcovcc(double *a, double *ap, double *b, double *at,double *atp, double *bt, int *na, int *nap, int *nb, int *period, double *ans)
 {
         int i, prevj = 0, j, nbi=*nb, nai = *na, napi = *nap;
         double tmpRet=0;
-        
+
         for(i = 0; i < nai; i++)
         {
             ap[i/ *period] += a[i];
@@ -384,7 +384,7 @@ void pcovcc(double *a, double *ap, double *b, double *at,double *atp, double *bt
                 }
             }
             ans[i] = ap[i]* tmpRet;
-        } 
+        }
 }
 
 
@@ -400,7 +400,7 @@ void sametime(double *a, int *na, int *millis, double *tts)
     	    j = j +1;
     	}
     }
-}	
+}
 
 void tocts(double *a, int *na, int *millis, int *millisstart, int *millisend, double *cts)
 {
@@ -418,7 +418,7 @@ void tocts(double *a, int *na, int *millis, int *millisstart, int *millisend, do
     	}
     }
  }
- 
+
 void portfolio(double *a, double *b, int *na, int *nb, int *millisa, int *millisb, int *millis,int *milliesn, double *port)
 {
     int i, j=0, k=0;
@@ -437,8 +437,9 @@ void portfolio(double *a, double *b, int *na, int *nb, int *millisa, int *millis
     	{
     	    port[i] += b[k];
     	    k = k+1;
-    	}    	
+    	}
     }
  }
- 
- 
+
+
+

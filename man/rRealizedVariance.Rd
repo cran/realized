@@ -7,7 +7,7 @@
 Calculate realized variance, covariance, correlation, covariance matrix, or correlation matrix.
 }
 \usage{
-rRealizedVariance(x, y = NULL, type = "naive", period = 1, lags = 1, cor = FALSE, args = list(), cts = TRUE, makeReturns = FALSE)
+rRealizedVariance(x, y = NULL, type = "naive", period = 1, lags = 1, cor = FALSE, rvargs = list(), cts = TRUE, makeReturns = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,7 +17,7 @@ rRealizedVariance(x, y = NULL, type = "naive", period = 1, lags = 1, cor = FALSE
   \item{type}{ Type of realized estimator to use, a rv. or rc. is appended to this value and that function is called }
   \item{lags}{ Number of lags or subgrids for kernel and subsample based estimators }
   \item{cor}{ T for correlation }
-  \item{args}{ List of extra parameters to pass into rv.* or rc.* }
+  \item{rvargs}{ List of extra parameters to pass into rv.* or rc.* }
   \item{cts}{ Create calendar time sampling if a non realizedObject is passed}
   \item{makeReturns}{ Prices are passed make them into log returns}
 }
@@ -39,19 +39,19 @@ data(ge.real.cts)
 rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=1)
 
 # Traditional Estimate at one minute frequency 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=1, args=list(align.period=60)) 
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=1, rvargs=list(align.period=60)) 
 
 # Traditional Estimate at 10 minute frequency 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=10, args=list(align.period=60)) 
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=10, rvargs=list(align.period=60)) 
 
 # Bartlett Kernel Estimate with minute aligned data at 20 lags 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=20, args=list(align.period=60, type="Bartlett"))
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=20, rvargs=list(align.period=60, type="Bartlett"))
 
 # Cubic Kernel Estimate with second aligned data at 400 lags 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=400, args=list(type="Cubic")) 
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=400, rvargs=list(type="Cubic")) 
 
 # Lead-Lag with one lag at one minute frequency 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=1, args=list(align.period=60)) 
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=1, rvargs=list(align.period=60)) 
  
 # Subsample Average Estimate with second aligned data at 600 subgrids 
 rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="avg", period=600) 
@@ -61,10 +61,10 @@ rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="avg", period=6
 rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="naive", period=1)
 
 # Traditional Estimate at 10 minute frequency 
-rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="naive", period=10, args=list(align.period=60))
+rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="naive", period=10, rvargs=list(align.period=60))
 
 # Lead-Lag with one lag at one minute frequency> 
-rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="kernel", lags=1, args=list(align.period=60))
+rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="kernel", lags=1, rvargs=list(align.period=60))
 
 # Subsample Average Estimate with second aligned data at 600 subgrids 
 rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="avg", period=600)
@@ -76,19 +76,19 @@ rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="avg", per
 rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=1, cor=TRUE) 
 
 # Traditional Estimate at one minute frequency 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=1, args=list(align.period=60), cor=TRUE)
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=1, rvargs=list(align.period=60), cor=TRUE)
 
 # Traditional Estimate at 10 minute frequency 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=10, args=list(align.period=60), cor=TRUE) 
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="naive", period=10, rvargs=list(align.period=60), cor=TRUE) 
 
 # Bartlett Kernel Estimate with minute aligned data at 20 lags 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=20, args=list(align.period=60, type="Bartlett"), cor=TRUE)
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=20, rvargs=list(align.period=60, type="Bartlett"), cor=TRUE)
 
 # Cubic Kernel Estimate with second aligned data at 400 lags 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=400, args=list(type="Cubic"), cor=TRUE) 
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=400, rvargs=list(type="Cubic"), cor=TRUE) 
 
 # Lead-Lag with one lag at one minute frequency 
-rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=1, args=list(align.period=60), cor=TRUE) 
+rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="kernel", lags=1, rvargs=list(align.period=60), cor=TRUE) 
 
 # Subsample Average Estimate with second aligned data at 600 subgrids 
 rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="avg", period=600, cor=TRUE) 
@@ -99,10 +99,10 @@ rRealizedVariance(x=msft.real.cts[[1]], y=ge.real.cts[[1]], type="avg", period=6
 rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="naive", period=1, cor=TRUE)
 
 # Traditional Estimate at 10 minute frequency
-rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="naive", period=10, args=list(align.period=60), cor=TRUE)
+rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="naive", period=10, rvargs=list(align.period=60), cor=TRUE)
 
 # Lead-Lag with one lag at one minute frequency 
-rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="kernel", lags=1, args=list(align.period=60), cor=TRUE) 
+rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="kernel", lags=1, rvargs=list(align.period=60), cor=TRUE) 
 
 # Subsample Average Estimate with second aligned data at 600 subgrids >
 rRealizedVariance(x=merge(msft.real.cts[[1]], ge.real.cts[[1]]), type="avg", period=600, cor=TRUE) 

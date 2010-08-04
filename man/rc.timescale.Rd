@@ -3,7 +3,8 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Realized Covariance: Two Timescales}
 \description{
-Realized Covariance using a generalization of the popular two timescale variance method.}
+Realized Covariance using a generalization of the popular two timescale variance method.
+}
 \usage{
 rc.timescale(x, y, period, align.period = 1, adj.type = "classic", cts = TRUE, makeReturns = FALSE, ...)
 }

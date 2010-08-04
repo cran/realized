@@ -6,7 +6,7 @@
 Realized variance calculation using a kernel estimator. 
 }
 \usage{
-rv.kernel(x, q, align.period = 1, adj = TRUE, type = 0, cts = TRUE, makeReturns = FALSE,...)
+rv.kernel(x, q, align.period = 1, adj = TRUE, type = 0, cts = TRUE, makeReturns = FALSE,rvargs=list(),...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,6 +17,7 @@ rv.kernel(x, q, align.period = 1, adj = TRUE, type = 0, cts = TRUE, makeReturns 
   \item{makeReturns}{ Prices are passed make them into log returns}
   \item{adj}{T to use dof adjustment}
   \item{type}{0-11 or a character string}
+ \item{rvargs}{.}
     \item{...}{ ...}
 }
 

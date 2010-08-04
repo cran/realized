@@ -6,7 +6,7 @@
 Creates a scatterplot of cross returns.
 }
 \usage{
-rScatterReturns(x, y, period, align.period = 1, numbers = FALSE, xlim = NULL, ylim = NULL, plotit = TRUE, pch = NULL, cts = TRUE, makeReturns = FALSE, ...)
+rScatterReturns(x,y, period, align.period=1,numbers=FALSE,xlim= NULL, ylim=NULL, plotit=TRUE, pch=NULL, cts=TRUE, makeReturns=FALSE, scale.size=0, col.change=FALSE,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,6 +21,8 @@ rScatterReturns(x, y, period, align.period = 1, numbers = FALSE, xlim = NULL, yl
   \item{pch}{type of point}
   \item{ylim}{ylimit}
   \item{xlim}{xlimit}
+  \item{scale.size}{.}
+  \item{col.change}{.}
     \item{...}{ ...}
 }
 \details{

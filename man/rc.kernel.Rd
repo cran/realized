@@ -6,7 +6,7 @@
  Realized covariance calculation using a kernel estimator. 
 }
 \usage{
-rc.kernel(x, y, q, align.period = 1, adj = TRUE, type = 0, cts = TRUE, makeReturns = FALSE,...)
+rc.kernel(x, y, q, align.period = 1, adj = TRUE, type = 0, cts = TRUE, makeReturns = FALSE,  ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -6,7 +6,7 @@
 Creates realized variance, covariance, and correlation plots for one or multiple days for each type of estimator.
 }
 \usage{
-rSignature(range, x, y = NULL, type = "naive", cor = FALSE, args = list(), xscale = 1, iteration.funct = "", iterations = NULL, plotit = FALSE, cts = TRUE, makeReturns = FALSE)
+rSignature(range, x, y = NULL, type = "naive", cor = FALSE, rvargs = list(), xscale = 1, iteration.funct = "", iterations = NULL, plotit = FALSE, cts = TRUE, makeReturns = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{ 
@@ -17,7 +17,7 @@ rSignature(range, x, y = NULL, type = "naive", cor = FALSE, args = list(), xscal
   \item{makeReturns}{ Prices are passed make them into log returns}
   \item{type}{ Type of realized estimator to use, a rv. or rc. is appended to this value and that function is called }
   \item{cor}{ T for correlation }
-  \item{args}{ List of extra parameters to pass into rv.* or rc.* }
+  \item{rvargs}{ List of extra parameters to pass into rv.* or rc.* }
   \item{xscale}{ value to multiply range by for x axis (see below) }
   \item{iteration.funct}{ Name of function to be used for average signature plot }
   \item{iterations}{ Numeric vector to pass into iteration.funct }
@@ -57,8 +57,8 @@ data(ge.real.cts)
 # see users manual for more examples
 
 test.cov <- rSignature(1:1200,x=msft.real.cts[[1]], y=ge.real.cts[[1]], xscale=1/60) 
-test.rect <- rSignature(1:600,msft.real.cts[[1]], ge.real.cts[[1]],type="kernel",args=list(type="rectangular"), xscale=1/30)
-test.mth <- rSignature(1:600,msft.real.cts[[1]], ge.real.cts[[1]],type="kernel",args=list(type="mth"), xscale=1/30)
+test.rect <- rSignature(1:600,msft.real.cts[[1]], ge.real.cts[[1]],type="kernel",rvargs=list(type="rectangular"), xscale=1/30)
+test.mth <- rSignature(1:600,msft.real.cts[[1]], ge.real.cts[[1]],type="kernel",rvargs=list(type="mth"), xscale=1/30)
 plot(test.cov, ylab="Realized Covariance", xlab="Minutes", main="GE | MSFT") 
 lines(test.rect, col=3, lwd=1) 
 lines(test.mth, col=4, lwd=2) 

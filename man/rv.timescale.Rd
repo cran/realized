@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Realized Variance: Two Timescales}
 \description{
-Realized variance using the two timescale variance method.}
+Realized variance using the two timescale variance method.
 }
 \usage{
 rv.timescale(x, period, align.period = 1, adj.type = "classic", cts = TRUE, makeReturns = FALSE, ...)
